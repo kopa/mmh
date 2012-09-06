@@ -1,4 +1,5 @@
-# Multi Monitor Helper # for gnome shell
+# Multi Monitor Helper #
+for the gnome shell
 
 This extension adds keyboard shortcuts to move windows from one monitor to another ...
 
