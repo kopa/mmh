@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schemalist>
+    <schema path="/org/gnome/shell/extensions/mmh/" id="org.gnome.shell.extensions.mmh" >
+        <key type="as" name="move-to-next-monitor">
+            <default><![CDATA[['<Super><Alt>Right']]]></default>
+            <summary>The key to move the focus window to the next monitor.</summary>
+        </key>
+        <key type="as" name="move-to-last-monitor">
+            <default><![CDATA[['<Super><Alt>Left']]]></default>
+            <summary>The key to move the focus window to the last monitor.</summary>
+        </key>
+    </schema>
+</schemalist>
