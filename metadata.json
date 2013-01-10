@@ -1,5 +1,5 @@
 {
-    "shell-version": ["3.4.1"], 
+    "shell-version": ["3.6.2"], 
     "uuid": "mmh@kopa.github.com", 
     "name": "MulitMonitorHelper", 
     "description": "A helper for multi monitor setup"
