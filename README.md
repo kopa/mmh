@@ -1,4 +1,4 @@
-# Window Mover Shortcuts #
+# Window Mover Keybindings #
 for the gnome shell
 
 This extension adds keyboard shortcuts to move windows to the next/previous monitor
