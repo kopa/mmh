@@ -10,7 +10,6 @@ var move_to_previous_monitor_handler;
 function init() {
     move_to_next_monitor_handler = function() {
         global.log("move window to next monitor");
-        // arguments: display, screen, null, keybinding
 
         let monitors = Main.layoutManager.monitors.length
         let focusMonitor = global.display.focus_window.get_monitor();
@@ -34,20 +33,26 @@ function init() {
 
 function enable() {
     var mySettings = Utils.getSettings();
+
     Main.wm.addKeybinding("move-to-next-monitor", 
       mySettings, 
       Meta.KeyBindingFlags.NONE, 
       Shell.KeyBindingMode.ALL, 
-      move_to_next_monitor_handler);
+      move_to_next_monitor_handler
+    );
+
     Main.wm.addKeybinding("move-to-last-monitor", 
       mySettings, 
       Meta.KeyBindingFlags.NONE, 
       Shell.KeyBindingMode.ALL, 
-      move_to_previous_monitor_handler);
+      move_to_previous_monitor_handler
+    );
+
     global.log("move_to_monitor enabled");
 }
 
 function disable() {
     Main.wm.removeKeybinding("move-to-next-monitor");
+
     global.log("move_to_monitor disabled");
 }
