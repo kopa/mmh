@@ -1,6 +1,6 @@
 {
-    "shell-version": ["3.6.2"], 
-    "uuid": "mmh@kopa.github.com", 
-    "name": "MulitMonitorHelper", 
-    "description": "A helper for multi monitor setup"
+    "shell-version": ["3.6", "3.8"], 
+    "uuid": "wmk@kopa.github.com", 
+    "name": "WindowMoverKeybinding", 
+    "description": "Shortcuts [META + left/right arrow] for moving windows to the next/previous monitor"
 }

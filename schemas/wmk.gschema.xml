@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <schemalist>
-    <schema path="/org/gnome/shell/extensions/mmh/" id="org.gnome.shell.extensions.mmh" >
+    <schema path="/org/gnome/shell/extensions/kopa.github.com/wmk/" id="org.gnome.shell.extensions.kopa.github.com.wmk" >
         <key type="as" name="move-to-next-monitor">
             <default><![CDATA[['<Super><Alt>Right']]]></default>
             <summary>The key to move the focus window to the next monitor.</summary>

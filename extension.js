@@ -1,45 +1,53 @@
 const St = imports.gi.St;
 const Main = imports.ui.main;
 const Meta = imports.gi.Meta;
-const Utils = imports.misc.extensionUtils.getCurrentExtension().imports.utils; 
+const Shell = imports.gi.Shell;
+const Utils = imports.misc.extensionUtils.getCurrentExtension().imports.utils;
 
-const mySettings = Utils.getSettings();
-
-let move_to_next_monitor_handler;
-let move_to_last_monitor_handler;
+var move_to_next_monitor_handler;
+var move_to_previous_monitor_handler;
 
 function init() {
     move_to_next_monitor_handler = function() {
         global.log("move window to next monitor");
         // arguments: display, screen, null, keybinding
-//        let keybindingArgument = arguments[3];
-//        global.log("keybinding-name" + keybindingArgument.get_name());
-//        global.log("keybinding-modifiers" + keybindingArgument.get_modifiers());
-//        global.log("keybinding-mask" + keybindingArgument.get_mask());
 
-        if (global.display.focus_window.get_monitor() == 1) {
-            return;
-        } else {
-            global.display.focus_window.move_to_monitor(1);
-        }
+        let monitors = Main.layoutManager.monitors.length
+        let focusMonitor = global.display.focus_window.get_monitor();
+        // cycle if more than highest index
+        let nextMonitor = monitors === focusMonitor + 1 ? 0 : focusMonitor + 1;
+
+        global.display.focus_window.move_to_monitor(nextMonitor);
     };
-    move_to_last_monitor_handler = function() {
-        global.log("move window to last monitor");
-        if (global.display.focus_window.get_monitor() == 0) {
-            return;
-        } else {
-            global.display.focus_window.move_to_monitor(0);
-        }
+    
+    move_to_previous_monitor_handler = function() {
+        global.log("move window to previous monitor");
+
+        let monitors = Main.layoutManager.monitors.length
+        let focusMonitor = global.display.focus_window.get_monitor();
+        // cycle if index is less than zero
+        let previousMonitor = focusMonitor - 1 < 0 ? monitors - 1 : focusMonitor - 1;
+
+        global.display.focus_window.move_to_monitor(previousMonitor);
     };
 }
 
 function enable() {
-    global.display.add_keybinding("move-to-next-monitor", mySettings, Meta.KeyBindingFlags.NONE, move_to_next_monitor_handler);
-    global.display.add_keybinding("move-to-last-monitor", mySettings, Meta.KeyBindingFlags.NONE, move_to_last_monitor_handler);
+    var mySettings = Utils.getSettings();
+    Main.wm.addKeybinding("move-to-next-monitor", 
+      mySettings, 
+      Meta.KeyBindingFlags.NONE, 
+      Shell.KeyBindingMode.ALL, 
+      move_to_next_monitor_handler);
+    Main.wm.addKeybinding("move-to-last-monitor", 
+      mySettings, 
+      Meta.KeyBindingFlags.NONE, 
+      Shell.KeyBindingMode.ALL, 
+      move_to_previous_monitor_handler);
     global.log("move_to_monitor enabled");
 }
 
 function disable() {
-    global.display.remove_keybinding("move-to-next-monitor");
+    Main.wm.removeKeybinding("move-to-next-monitor");
     global.log("move_to_monitor disabled");
 }
